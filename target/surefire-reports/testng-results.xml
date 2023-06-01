@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+  <reporter-output>
+    <line>
+      <![CDATA[Abro browser]]>
+    </line>
+    <line>
+      <![CDATA[Buscamos la caja de busqueda]]>
+    </line>
+    <line>
+      <![CDATA[Ingresa a buscar:Selenium]]>
+    </line>
+    <line>
+      <![CDATA[Presiona enter realizar la busqueda]]>
+    </line>
+    <line>
+      <![CDATA[validar que realice la busqueda correcta desde la URL]]>
+    </line>
+    <line>
+      <![CDATA[La busqueda fue realizada con exito]]>
+    </line>
+    <line>
+      <![CDATA[Fin de la prueba]]>
+    </line>
+    <line>
+      <![CDATA[Abro browser]]>
+    </line>
+    <line>
+      <![CDATA[Buscamos la caja de busqueda]]>
+    </line>
+    <line>
+      <![CDATA[Ingresa a buscar:TDD]]>
+    </line>
+    <line>
+      <![CDATA[Presiona enter realizar la busqueda]]>
+    </line>
+    <line>
+      <![CDATA[validar que realice la busqueda correcta desde la URL]]>
+    </line>
+    <line>
+      <![CDATA[La busqueda fue realizada con exito]]>
+    </line>
+    <line>
+      <![CDATA[Fin de la prueba]]>
+    </line>
+    <line>
+      <![CDATA[Abro browser]]>
+    </line>
+    <line>
+      <![CDATA[Buscamos la caja de busqueda]]>
+    </line>
+    <line>
+      <![CDATA[Ingresa a buscar:Utn]]>
+    </line>
+    <line>
+      <![CDATA[Presiona enter realizar la busqueda]]>
+    </line>
+    <line>
+      <![CDATA[validar que realice la busqueda correcta desde la URL]]>
+    </line>
+    <line>
+      <![CDATA[La busqueda fue realizada con exito]]>
+    </line>
+    <line>
+      <![CDATA[Fin de la prueba]]>
+    </line>
+  </reporter-output>
+  <suite started-at="2023-05-31T19:48:51 ART" name="Suite" finished-at="2023-05-31T19:49:06 ART" duration-ms="14142">
+    <groups>
+    </groups>
+    <test started-at="2023-05-31T19:48:51 ART" name="Test" finished-at="2023-05-31T19:49:06 ART" duration-ms="14142">
+      <class name="com.selenium.test.TestGoogle">
+        <test-method is-config="true" signature="abrirBrowser(org.testng.ITestContext)[pri:0, instance:com.selenium.test.TestGoogle@794cb805]" started-at="2023-05-31T19:48:52 ART" name="abrirBrowser" finished-at="2023-05-31T19:48:54 ART" duration-ms="2448" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@748e9b20]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Abro browser]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- abrirBrowser -->
+        <test-method signature="validarGoogle(java.lang.String,java.lang.String)[pri:0, instance:com.selenium.test.TestGoogle@794cb805]" started-at="2023-05-31T19:48:54 ART" name="validarGoogle" description="Buscar los elementos de google.com" data-provider="datos" finished-at="2023-05-31T19:48:57 ART" duration-ms="2740" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Selenium]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Selenium]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Buscamos la caja de busqueda]]>
+            </line>
+            <line>
+              <![CDATA[Ingresa a buscar:Selenium]]>
+            </line>
+            <line>
+              <![CDATA[Presiona enter realizar la busqueda]]>
+            </line>
+            <line>
+              <![CDATA[validar que realice la busqueda correcta desde la URL]]>
+            </line>
+            <line>
+              <![CDATA[La busqueda fue realizada con exito]]>
+            </line>
+            <line>
+              <![CDATA[Fin de la prueba]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- validarGoogle -->
+        <test-method is-config="true" signature="cerrarBrowser()[pri:0, instance:com.selenium.test.TestGoogle@794cb805]" started-at="2023-05-31T19:48:57 ART" name="cerrarBrowser" finished-at="2023-05-31T19:48:57 ART" duration-ms="113" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cerrarBrowser -->
+        <test-method is-config="true" signature="abrirBrowser(org.testng.ITestContext)[pri:0, instance:com.selenium.test.TestGoogle@794cb805]" started-at="2023-05-31T19:48:57 ART" name="abrirBrowser" finished-at="2023-05-31T19:48:58 ART" duration-ms="1498" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@748e9b20]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Abro browser]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- abrirBrowser -->
+        <test-method signature="validarGoogle(java.lang.String,java.lang.String)[pri:0, instance:com.selenium.test.TestGoogle@794cb805]" started-at="2023-05-31T19:48:58 ART" name="validarGoogle" description="Buscar los elementos de google.com" data-provider="datos" finished-at="2023-05-31T19:49:00 ART" duration-ms="1739" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TDD]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[TDD]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Buscamos la caja de busqueda]]>
+            </line>
+            <line>
+              <![CDATA[Ingresa a buscar:TDD]]>
+            </line>
+            <line>
+              <![CDATA[Presiona enter realizar la busqueda]]>
+            </line>
+            <line>
+              <![CDATA[validar que realice la busqueda correcta desde la URL]]>
+            </line>
+            <line>
+              <![CDATA[La busqueda fue realizada con exito]]>
+            </line>
+            <line>
+              <![CDATA[Fin de la prueba]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- validarGoogle -->
+        <test-method is-config="true" signature="cerrarBrowser()[pri:0, instance:com.selenium.test.TestGoogle@794cb805]" started-at="2023-05-31T19:49:00 ART" name="cerrarBrowser" finished-at="2023-05-31T19:49:00 ART" duration-ms="88" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cerrarBrowser -->
+        <test-method is-config="true" signature="abrirBrowser(org.testng.ITestContext)[pri:0, instance:com.selenium.test.TestGoogle@794cb805]" started-at="2023-05-31T19:49:00 ART" name="abrirBrowser" finished-at="2023-05-31T19:49:03 ART" duration-ms="3320" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@748e9b20]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Abro browser]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- abrirBrowser -->
+        <test-method signature="validarGoogle(java.lang.String,java.lang.String)[pri:0, instance:com.selenium.test.TestGoogle@794cb805]" started-at="2023-05-31T19:49:03 ART" name="validarGoogle" description="Buscar los elementos de google.com" data-provider="datos" finished-at="2023-05-31T19:49:06 ART" duration-ms="2055" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Utn]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Utn]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Buscamos la caja de busqueda]]>
+            </line>
+            <line>
+              <![CDATA[Ingresa a buscar:Utn]]>
+            </line>
+            <line>
+              <![CDATA[Presiona enter realizar la busqueda]]>
+            </line>
+            <line>
+              <![CDATA[validar que realice la busqueda correcta desde la URL]]>
+            </line>
+            <line>
+              <![CDATA[La busqueda fue realizada con exito]]>
+            </line>
+            <line>
+              <![CDATA[Fin de la prueba]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- validarGoogle -->
+        <test-method is-config="true" signature="cerrarBrowser()[pri:0, instance:com.selenium.test.TestGoogle@794cb805]" started-at="2023-05-31T19:49:06 ART" name="cerrarBrowser" finished-at="2023-05-31T19:49:06 ART" duration-ms="98" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cerrarBrowser -->
+      </class> <!-- com.selenium.test.TestGoogle -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>

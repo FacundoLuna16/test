@@ -55,9 +55,9 @@ public class TestDespegar {
 	public Object[][] createData() {
 		return new Object[][] {
 				// Destino, Fecha ida(cant dias a partir de hoy), Fecha Vuelta(cant dias)
-				{ "Buenos Aires, Argentina", "San Carlos de Bariloche, Rio Negro, Argentina", 2, 2 },
-				{ "Buenos Aires, Argentina", "Villa Carlos Paz, Córdoba, Argentina", 2, 2 },
-				{ "Buenos Aires, Argentina", "Villa La Angostura, Neuquén, Argentina", 2, 2 } };
+				{ "Buenos Aires, Argentina", "San Carlos de Bariloche, Rio Negro, Argentina", 2, 5 },
+				{ "Buenos Aires, Argentina", "Villa Carlos Paz, Córdoba, Argentina", 2, 3 },
+				{ "Buenos Aires, Argentina", "Villa La Angostura, Neuquén, Argentina", 2, 4 } };
 	}
 
 	@Test(dataProvider = "datos", description = "Buscar paquetes en Despegar.com")

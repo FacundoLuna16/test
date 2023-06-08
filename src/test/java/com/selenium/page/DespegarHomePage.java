@@ -25,7 +25,6 @@ public class DespegarHomePage {
 	String fecha;
 	String xpathIda;
 	String xpathVuelta;
-
 	WebElement selectFechaIda;
 
 	WebElement selectFechaVuelta;
@@ -81,11 +80,8 @@ public class DespegarHomePage {
 		txtOrigen.sendKeys(salida);
 		Thread.sleep(2000);
 		txtDestino.sendKeys(Keys.CONTROL);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			Utiles.reportes("fallo en la linea 83 DespegarHomePage.java");
-		}
+		Thread.sleep(2000);
+		Utiles.reportes("fallo en la linea 83 DespegarHomePage.java");
 		txtDestino.sendKeys(Keys.ENTER);
 		Utiles.reportes("Ingresamos el destino: " + salida);
 	}
@@ -103,11 +99,15 @@ public class DespegarHomePage {
 
 	private String validarEstructuraFecha(int dia, int mes, int anio) {
 	    if (dia >= 25) {
-	        int siguienteMes = (mes == 12) ? 1 : mes + 1;
-	        return String.format("%04d-%02d", anio, siguienteMes);
+	        if (mes ==12) {
+	        	fecha = String.format("%04d-%02d", anio+1, 1);
+	        }
+	        fecha = String.format("%04d-%02d", anio,mes + 1);
+	        
 	    } else {
-	        return String.format("%04d-%02d", anio, mes);
+	        fecha = String.format("%04d-%02d", anio, mes);
 	    }
+	    return fecha;
 	}
 
 
@@ -148,13 +148,13 @@ public class DespegarHomePage {
 		Utiles.reportes(fecha);
 		xpathVuelta = "//div[@data-month='" + fecha
 				+ "']//div[@class='sbox5-monthgrid-datenumber-number'][normalize-space()='"
-				+ (diaActual+duracion) + "']";
+				+ (diaActual+salida+duracion) + "']";
 		selectFechaVuelta = driver.findElement(By.xpath(xpathVuelta));
 		
 		fechaVuelta.click();
 		Assert.assertTrue(selectFechaVuelta.isEnabled(),"La grilla de fecha vuelta NO esta disponible");
 		selectFechaVuelta.click();
-		Utiles.reportes("Seleccionamos la fecha de vuelta:" + fecha +"-"+(salida));
+		Utiles.reportes("Seleccionamos la fecha de vuelta:" + fecha +"-"+(diaActual+duracion+salida));
 		
 		//Aplicamos las fechas seleccionadas
 		btnAplicarPeriodo = driver.findElement(By.xpath("//button[@class='sbox5-3-btn -primary -md']"));

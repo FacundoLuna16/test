@@ -112,7 +112,8 @@ public class DespegarHomePage {
 
 
 	public void seleccionarFechaIda(int salida,int duracion) throws Exception {
-		String fechaida;
+		String fechaida = validarEstructuraFecha(diaActual + salida, mesActual, anioActual);
+
 		//seteamos las variables a utilizar
 		if (diaActual >25) {
 			mesActual ++;
@@ -147,7 +148,7 @@ public class DespegarHomePage {
 		Utiles.reportes(fecha);
 		xpathVuelta = "//div[@data-month='" + fecha
 				+ "']//div[@class='sbox5-monthgrid-datenumber-number'][normalize-space()='"
-				+ (duracion) + "']";
+				+ (diaActual+duracion) + "']";
 		selectFechaVuelta = driver.findElement(By.xpath(xpathVuelta));
 		
 		fechaVuelta.click();

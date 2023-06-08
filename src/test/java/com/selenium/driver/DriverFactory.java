@@ -26,7 +26,7 @@ public class DriverFactory {
 			break;
 		}
 		case FIREFOX:// Using WebDriver
-		{
+		{//TODO ejecutar con firefox
 			System.setProperty("webdriver.gecko.driver", "driverBrowsers\\firefox\\geckodriver.exe");
 			Utiles.reportes("Abro browser");
 			driver = new FirefoxDriver();
@@ -34,7 +34,7 @@ public class DriverFactory {
 		}
 		default:
 			Utiles.reportes("No selecciono ningun browser correcto, se le asignara Chrome");
-			System.setProperty("webdriver.chrome.driver", "C:/chrome/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "Recursos/chromedriver.exe");
 			Utiles.reportes("Abro browser");
 			driver = new ChromeDriver();
 			break;

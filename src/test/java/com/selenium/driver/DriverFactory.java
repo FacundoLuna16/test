@@ -20,7 +20,7 @@ public class DriverFactory {
 		switch (browsers.valueOf(browserName)) {
 		case CHROME: // Using WebDriver
 		{
-			System.setProperty("webdriver.chrome.driver", "C:/chrome/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "Recursos/chromedriver.exe");
 			Utiles.reportes("Abro browser");
 			driver = new ChromeDriver();
 			break;

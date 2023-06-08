@@ -1,0 +1,10 @@
+#!/bin/bash
+
+var1="TestSuiteDespegar"
+var2="TestSuiteGoogle"
+var3="TestSuiteWiki"
+
+for i in $var1 $var2 $var3
+do
+    mvn install -Dsuite=$i
+done

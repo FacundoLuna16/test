@@ -4,47 +4,49 @@ import org.openqa.selenium.By;
 
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.selenium.MetodosUtiles.*;
+import com.selenium.driver.DriverFactory;
 
 public class TestWiki {
 
 	WebDriver driver;
 
 	@BeforeMethod()
-	public void preCondiciones() throws Exception {
+	public void abrirBrowser(ITestContext context) throws Exception {
 		// Seteamos el sistema
-		System.setProperty("webdriver.chrome.driver", "C:/chrome/chromedriver.exe");
 		//TODO "utilizar dataprovide "
-		driver = new ChromeDriver();
+		driver = DriverFactory.LevantarBrowser(driver, context);
+		Utiles.separador();
 		Utiles.reportes("Inicializamos el Browser");
-
-		// Ubicacion pagina
-		driver.get("http://wikipedia.org");
 		Utiles.reportes("Ingresamos en la pagina http://wikipedia.org");
 		Thread.sleep(2000);
 	}
 
 	@AfterMethod()
 	public void postCondiciones() throws Exception {
+		Utiles.separador();
 		driver.close();
 	}
 
 	@DataProvider(name = "datos")
 	public Object[][] createData() {
-		return new Object[][] { { "Selenium", "Selenium" }, { "TDD", "Desarrollo guiado por pruebas" },
-				{ "DATA DRIVEN TESTING", "Data-driven testing" } };
+		return new Object[][] { 
+			{ "Selenium", "Selenium" }, 
+			{ "TDD", "Desarrollo guiado por pruebas" },
+			{ "DATA DRIVEN TESTING", "Data-driven testing" } };
 	}
 
 	@Test(dataProvider = "datos", description = "Validar que las busquedas en Wikipedia funcionan")
 	public void ValidarBusquedaWikilistas(String varBuscar, String resultado) throws Exception {
 		// elemento busqueda
+		//TODO respetar la arquitectura con WikiHomePage y WikiResultadosPage
 		WebElement searchInput = driver.findElement(By.id("searchInput"));
 		Assert.assertTrue(searchInput.isDisplayed(), "La caja de texto NO esta Visible");
 		Assert.assertTrue(searchInput.getText().toString().isEmpty(), "La caja de texto NO esta vacia");

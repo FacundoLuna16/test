@@ -46,10 +46,9 @@ public class TestDespegar {
 
 	@AfterMethod()
 	public void cerrarBrowser() throws Exception {
-		driver.quit();// a diferencia del diver.close(); esa cierra toda la ventana sin importar la
-						// cantidad de pensatañas creadas
-		Utiles.reportes("Cerramos el Browser correctamente.");
 		Utiles.reportes("Fin CP.");
+		DriverFactory.FinalizarBrowser(driver);
+
 	}
 
 	@DataProvider(name = "datos")

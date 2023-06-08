@@ -15,6 +15,7 @@ public class DriverFactory {
 
 	/*** Metodo que abre un navegador y navega a la URL que le indiquemos ***/
 	public static WebDriver LevantarBrowser(WebDriver driver, ITestContext context) {
+		Utiles.separador();
 		String browserName = context.getCurrentXmlTest().getParameter("NombreNavegador");
 		String URL = context.getCurrentXmlTest().getParameter("Url");
 		switch (browsers.valueOf(browserName)) {
@@ -46,6 +47,7 @@ public class DriverFactory {
 
 	public static void FinalizarBrowser(WebDriver driver) {
 		Utiles.reportes("Cerrando el browser");
+		Utiles.separador();
 		driver.quit();
 		driver = null;
 	}

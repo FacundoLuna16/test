@@ -7,5 +7,10 @@ public class Utiles {
 		System.out.println(msg);
 		Reporter.log(msg);
 	}
+	public static void separador() {
+		String repeatedString = "-".repeat(40);
+		System.out.println(repeatedString);
+		System.out.println(repeatedString);
+	}
 
 }

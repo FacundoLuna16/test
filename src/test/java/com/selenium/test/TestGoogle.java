@@ -28,7 +28,7 @@ public class TestGoogle {
 		
 		@AfterMethod()
 		public void cerrarBrowser() throws Exception{
-			driver.close();
+			DriverFactory.FinalizarBrowser(driver);
 		}
 		
 		@DataProvider(name = "datos")

@@ -3,9 +3,9 @@
 <suite name="Suite">
 	<parameter name="NombreNavegador" value="CHROME" />
 	<parameter name="Url" value="http://wikipedia.org" />
-  <test thread-count="5" name="Test">
-    <classes>
-      <class name="com.selenium.test.TestWiki"/>
-    </classes>
-  </test> <!-- Test -->
+  	<test thread-count="5" name="Test">
+    	<classes>
+      		<class name="com.selenium.test.TestCaseWiki2"/>
+    	</classes>
+  	</test> <!-- Test -->
 </suite> <!-- Suite -->

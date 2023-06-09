@@ -35,10 +35,9 @@ public class TestCaseWiki2 {
 	public void validarCajaTextoNuevo(String varBuscar, String resultado) throws Exception{
 		WikiHomePage wikihomepage = PageFactory.initElements(driver, WikiHomePage.class);
 		wikihomepage.IngresarDatoCajaBusqueda(varBuscar);
-		Utiles.reportes("Validar que el titulo sea "+resultado);
-		WikiResultadosPage wikiRdopage= PageFactory.initElements(driver, WikiResultadosPage.class);
 		
-		Utiles.reportes("Validar que el titulo sea "+ resultado);
+		WikiResultadosPage wikiRdopage= PageFactory.initElements(driver, WikiResultadosPage.class);
+		Utiles.reportes("Validar que el titulo sea "+resultado);
 		Assert.assertTrue((wikiRdopage.ObtenerTitulo().contains(resultado)), "El valor "+resultado+" no se encuentra en el titulo");
 	}
 	

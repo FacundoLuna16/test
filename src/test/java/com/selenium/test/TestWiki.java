@@ -1,10 +1,9 @@
 package com.selenium.test;
 
-import org.openqa.selenium.By;
-
-import org.openqa.selenium.support.ui.Select;
+import java.time.Duration;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
@@ -13,91 +12,50 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.selenium.MetodosUtiles.*;
 import com.selenium.driver.DriverFactory;
+import com.selenium.page.*;
 
 public class TestWiki {
 
 	WebDriver driver;
-
+	WebDriverWait wait;
+	
 	@BeforeMethod()
 	public void abrirBrowser(ITestContext context) throws Exception {
-		// Seteamos el sistema
 		//TODO "utilizar dataprovide "
 		driver = DriverFactory.LevantarBrowser(driver, context);
-		Utiles.separador();
-		Utiles.reportes("Inicializamos el Browser");
-		Utiles.reportes("Ingresamos en la pagina http://wikipedia.org");
-		Thread.sleep(2000);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 
-	@AfterMethod()
-	public void postCondiciones() throws Exception {
-		Utiles.separador();
-		driver.close();
+	@AfterMethod
+	public void CerrarBrowser() {
+		Utiles.reportes("Cerrar Browser");
+		DriverFactory.FinalizarBrowser(driver);
 	}
-
+	
 	@DataProvider(name = "datos")
 	public Object[][] createData() {
 		return new Object[][] { 
-			{ "Selenium", "Selenium" }, 
-			{ "TDD", "Desarrollo guiado por pruebas" },
-			{ "DATA DRIVEN TESTING", "Data-driven testing" } };
+			{ "Selenium", "Selenium","Español" }, 
+			{ "TDD", "Desarrollo guiado por pruebas","Español"},
+			{ "DATA DRIVEN TESTING", "Data-driven testing","Español" } 
+			};
 	}
 
 	@Test(dataProvider = "datos", description = "Validar que las busquedas en Wikipedia funcionan")
-	public void ValidarBusquedaWikilistas(String varBuscar, String resultado) throws Exception {
-		// elemento busqueda
-		//TODO respetar la arquitectura con WikiHomePage y WikiResultadosPage
-		WebElement searchInput = driver.findElement(By.id("searchInput"));
-		Assert.assertTrue(searchInput.isDisplayed(), "La caja de texto NO esta Visible");
-		Assert.assertTrue(searchInput.getText().toString().isEmpty(), "La caja de texto NO esta vacia");
-		Utiles.reportes("Indentificamos la caja de busqueda");
-		Utiles.reportes("Identificar el combo de idiomas");
-
-		Select selectbuscar = new Select(driver.findElement(By.id("searchLanguage")));
-		for (WebElement e : selectbuscar.getOptions()) {
-			System.out.println(e.getText());
-			if (e.getText().contains("Español")) {
-				e.click();
-				break;
-			}
-		}
-
-		// Agregamos y enviamos para buscar Selenium
-		searchInput.sendKeys(varBuscar);// agregamos texto
-		Thread.sleep(2000);
-		Utiles.reportes("Ingresamos para buscar " + varBuscar);
-		searchInput.submit();// enviamos la peticion
-		Utiles.reportes("Enviamos la peticion");
-		// Validando titulo de la busqueda
-		WebElement tituloResultado = driver.findElement(By.id("firstHeading"));
-		Assert.assertTrue(tituloResultado.getText().contains(resultado), "El titulo No es el correcto");
-		Utiles.reportes("Texto encontrado " + tituloResultado.getText());
-	}
-
-	@Test(dataProvider = "datos", description = "Validar que las busquedasen Wikipedia funcionan")
-	public void ValidarBusquedaWikipedia(String varBuscar, String resultado) throws Exception {
-
-		// elemento busqueda
-		WebElement searchInput = driver.findElement(By.id("searchInput"));
-		Assert.assertTrue(searchInput.isDisplayed(), "La caja de texto NO esta Visible");
-
-		// System.out.println(searchInput.getText().getClass());Es del tipo String
-		Assert.assertTrue(searchInput.getText().toString().isEmpty(), "La caja de texto NO esta vacia");
-		Utiles.reportes("Indentificamos la caja de busqueda");
-
-		// Agregamos y enviamos para buscar Selenium
-		searchInput.sendKeys(varBuscar);// agregamos texto
-		Thread.sleep(2000);
-		Utiles.reportes("Ingresamos para buscar " + varBuscar);
-		searchInput.submit();// enviamos la peticion
-		Utiles.reportes("Enviamos la peticion");
-
-		// Validando titulo de la busqueda
-		WebElement tituloResultado = driver.findElement(By.id("firstHeading"));
-		Assert.assertTrue(tituloResultado.getText().contains(resultado), "El titulo No es el correcto");
-		Utiles.reportes("Texto encontrado " + tituloResultado.getText());
+	public void ValidarBusquedaWikilistas(String varBuscar, String resultado,String idioma) throws Exception {
+		WikiHomePage wikihomepage = PageFactory.initElements(driver, WikiHomePage.class);
+		wikihomepage.IngresarDatoCajaBusqueda(varBuscar);
+		
+		WikiResultadosPage wikiRdopage= PageFactory.initElements(driver, WikiResultadosPage.class);
+		Utiles.reportes("Validar que el titulo sea "+resultado);
+		Assert.assertTrue((wikiRdopage.ObtenerTitulo().contains(resultado)), "El valor "+resultado+" no se encuentra en el titulo");
+		//TODO ver las funciones detalladamente
+		//wikihomepage.seleccionarIdioma(wait, idioma);
+		//wikihomepage.IngresarDatoCajaBusqueda(varBuscar);
+		//wikiResultadoPage.ValidarTitulo(wait,resultado);
 
 	}
+
 	/*
 	 * 
 	 * @Test(description =

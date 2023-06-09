@@ -15,9 +15,7 @@ import com.selenium.MetodosUtiles.Utiles;
 
 public class DespegarHomePage {
 	WebDriver driver;
-
 	WebElement btnNoLogin;
-
 	LocalDate fechaActual;
 	int diaActual;
 	int mesActual;
@@ -26,7 +24,6 @@ public class DespegarHomePage {
 	String xpathIda;
 	String xpathVuelta;
 	WebElement selectFechaIda;
-
 	WebElement selectFechaVuelta;
 	WebElement btnAplicarPeriodo;
 	WebElement habitaciones;
@@ -64,7 +61,6 @@ public class DespegarHomePage {
 		 * if (btnEscLogin.isDisplayed() ) { btnEscLogin.click(); }else {
 		 * btnNoLogin.click(); }comentarioParaAgregarer
 		 */
-
 	}
 
 	public void aceptarCookies() {
@@ -73,7 +69,6 @@ public class DespegarHomePage {
 	}
 
 	public void ingresarSalida(String salida) throws Exception {
-
 		Assert.assertTrue(txtOrigen.isDisplayed(), "La caja de texto Origen, NO esta Visible");
 		txtOrigen.click();
 		txtOrigen.clear();

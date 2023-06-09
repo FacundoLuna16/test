@@ -1,9 +1,13 @@
 package com.selenium.page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import com.selenium.MetodosUtiles.*;
 
@@ -25,6 +29,19 @@ public class WikiHomePage {
 	private WebElement caja;
 	@FindBy(id = "searchLanguage")
 	private WebElement languageCombo;
+	
+	public void seleccionarIdioma(WebDriverWait wait, String idioma) {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("searchLanguage")));
+		Select selectbuscar = new Select(driver.findElement(By.id("searchLanguage")));
+		for (WebElement e : selectbuscar.getOptions()) {
+			//System.out.println(e.getText());//muestra todos los idiomas disponible
+			if (e.getText().contains(idioma)) {
+				Utiles.reportes("Seleccionamos el Idioma: " + e.getText());//muestra el idioma seleccionado
+				e.click();
+				break;
+			}
+		}
+	}
 
 	public void ClickEnEspaniol() throws Exception {
 		Assert.assertTrue((idiomaEspaniol.isDisplayed()), "El idioma no se visualiza");	
@@ -41,10 +58,11 @@ public class WikiHomePage {
 		return caja.isDisplayed();
 		}
 
-	public void IngresarDatoCajaBusqueda ( String dato)
-		{
-		Utiles.reportes("Localizar y comprobar que la caja de busqueda se muestra");
-		Assert.assertTrue((caja.isDisplayed()), "La caja de busqueda no se visualiza");
+	public void IngresarDatoCajaBusqueda ( String dato){
+		
+		Utiles.reportes("Esperamos, Localizamos y comprobamos que la caja de busqueda se muestra");
+		Assert.assertTrue((caja.isDisplayed()), "La caja de busqueda NO se visualiza");
+		Assert.assertTrue(caja.getText().toString().isEmpty(), "La caja de texto NO esta vacia");
 		Utiles.reportes("Ingresar la palabra " + dato);
 		caja.sendKeys(dato);
 		Utiles.reportes("Presionar Enter");

@@ -64,7 +64,8 @@ public class TestDespegar {
 	public void validarDespegar(String Origen, String destino, int salida, int duracion) throws Exception {
 
 		DespegarHomePage despegarHomePage = PageFactory.initElements(driver, DespegarHomePage.class);
-		despegarHomePage.cerrarLogin();
+		//TODO ver inconveniente con el comentario
+		//despegarHomePage.cerrarLogin();
 		despegarHomePage.aceptarCookies();
 
 		// Ingresar Origen

@@ -54,8 +54,8 @@ public class TestDespegar {
 	@DataProvider(name = "datos")
 	public Object[][] createData() {
 		return new Object[][] {
-				// Destino, Fecha ida(cant dias a partir de hoy), Fecha Vuelta(cant dias)
-				{ "Buenos Aires, Argentina", "San Carlos de Bariloche, Rio Negro, Argentina", 2, 5 },
+				// Origen      ,Destino    , Fecha ida(cant dias a partir de hoy)    , Fecha Vuelta(cant dias)
+				{ "Buenos Aires, Argentina", "San Carlos de Bariloche, Rio Negro, Argentina", 2, 13 },
 				{ "Buenos Aires, Argentina", "Villa Carlos Paz, Córdoba, Argentina", 2, 3 },
 				{ "Buenos Aires, Argentina", "Villa La Angostura, Neuquén, Argentina", 2, 4 } };
 	}
@@ -65,8 +65,8 @@ public class TestDespegar {
 
 		DespegarHomePage despegarHomePage = PageFactory.initElements(driver, DespegarHomePage.class);
 		//TODO ver inconveniente con el comentario
-		//despegarHomePage.cerrarLogin();
 		despegarHomePage.aceptarCookies();
+		despegarHomePage.cerrarLogin();
 
 		// Ingresar Origen
 		despegarHomePage.ingresarSalida(Origen);

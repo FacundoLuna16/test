@@ -55,7 +55,7 @@ public class TestDespegar {
 	public Object[][] createData() {
 		return new Object[][] {
 				// Origen      ,Destino    , Fecha ida(cant dias a partir de hoy), Fecha Vuelta(cant dias),CantAdultos,CantNiños,clase
-				{ "Buenos Aires, Argentina", "San Carlos de Bariloche, Rio Negro, Argentina", 2, 13,2,0,"Económica"},
+				{ "Buenos Aires, Argentina", "San Carlos de Bariloche, Rio Negro, Argentina", 2, 13,2,1,"Económica"},
 				{ "Buenos Aires, Argentina", "Villa Carlos Paz, Córdoba, Argentina", 2, 3,1,2,"Premium economy"},
 				{ "Buenos Aires, Argentina", "Villa La Angostura, Neuquén, Argentina", 2, 4,2,1,"Primera Clase"} };
 	}

@@ -34,7 +34,7 @@ public class DespegarHomePage {
 	private WebElement aplicarHab;
 	@FindBy(xpath = "//div[@class='sbox5-3-select -lg']//select[@class='select-tag']")
 	private WebElement claseSelector;
-	@FindBy(xpath = "//div[@class='sbox5-segment--2_IQ3']//div[@class='sbox5-distribution-passengers--dbiHH']//input[@type='text']")
+	@FindBy(xpath = "//div[@class='sbox5-segments--lzKBc']//div[@class='sbox5-distributionPassengers']//input[@class='input-tag']")
 	private WebElement desplegableHab;
 	@FindBy(xpath = "//div[@class='stepper__distribution_container']/div[1]//button[@class='steppers-icon-right stepper__icon']")
 	private WebElement masAdulto;
@@ -61,6 +61,7 @@ public class DespegarHomePage {
 		diaActual = fechaActual.getDayOfMonth();
 		mesActual = fechaActual.getMonthValue();
 		anioActual = fechaActual.getYear();
+		
 	}
 
 	public void cerrarLogin() {
@@ -193,11 +194,12 @@ public class DespegarHomePage {
 	public void seleccionarCantPersonas(int cantAdultos, int cantNinos,String clase,WebDriverWait wait) {
 		
 		int xpathNinos= 2;
-		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='sbox5-segments--lzKBc']//div[@class='sbox5-distributionPassengers']//input[@class='input-tag']")));
 		desplegableHab.click();
 		if (cantAdultos>1) {
 			
 			for (int i=1; i<cantAdultos;i++ ) {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='stepper__distribution_container']/div[1]//button[@class='steppers-icon-right stepper__icon']")));
 				masAdulto.click();
 			}
 		}
@@ -205,6 +207,7 @@ public class DespegarHomePage {
 		if (cantNinos>0) {
 			for (int i=0; i<cantNinos;i++ ) {
 				masNinos.click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='stepper__distribution_container']/div[2]//button[@class='steppers-icon-right stepper__icon']")));
 				Utiles.reportes("Agregamos "+cantNinos+" Niños");
 				xpathNinos++;
 				String xpath = "//div[@class='stepper__distribution_container']//div["+xpathNinos+"]//select[@class='select']";

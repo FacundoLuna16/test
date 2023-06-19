@@ -54,14 +54,14 @@ public class TestDespegar {
 	@DataProvider(name = "datos")
 	public Object[][] createData() {
 		return new Object[][] {
-				// Origen      ,Destino    , Fecha ida(cant dias a partir de hoy)    , Fecha Vuelta(cant dias)
-				{ "Buenos Aires, Argentina", "San Carlos de Bariloche, Rio Negro, Argentina", 2, 13 },
-				{ "Buenos Aires, Argentina", "Villa Carlos Paz, Córdoba, Argentina", 2, 3 },
-				{ "Buenos Aires, Argentina", "Villa La Angostura, Neuquén, Argentina", 2, 4 } };
+				// Origen      ,Destino    , Fecha ida(cant dias a partir de hoy), Fecha Vuelta(cant dias),CantAdultos,CantNiños,clase
+				{ "Buenos Aires, Argentina", "San Carlos de Bariloche, Rio Negro, Argentina", 2, 13,2,0,"Económica"},
+				{ "Buenos Aires, Argentina", "Villa Carlos Paz, Córdoba, Argentina", 2, 3,1,2,"Premium economy"},
+				{ "Buenos Aires, Argentina", "Villa La Angostura, Neuquén, Argentina", 2, 4,2,1,"Primera Clase"} };
 	}
 
 	@Test(dataProvider = "datos", description = "Buscar paquetes en Despegar.com")
-	public void validarDespegar(String Origen, String destino, int salida, int duracion) throws Exception {
+	public void validarDespegar(String Origen, String destino, int salida, int duracion, int cantAdultos, int cantNinos,String clase) throws Exception {
 
 		DespegarHomePage despegarHomePage = PageFactory.initElements(driver, DespegarHomePage.class);
 		//TODO ver inconveniente con el comentario
@@ -79,6 +79,10 @@ public class TestDespegar {
 
 		// Seleccionamos la fecha de vuelta
 		despegarHomePage.seleccionFechaVuelta(salida, duracion);
+		
+		// Agregar habitacion y Personas
+		//TODO terminar las esperas inteligente para el correcto funcionamiento de la funcion
+		//despegarHomePage.seleccionarCantPersonas(cantAdultos,cantNinos,clase,wait);
 
 		// Buscamos los Paquetes
 		despegarHomePage.realizarBusqueda();

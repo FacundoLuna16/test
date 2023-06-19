@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -27,7 +28,18 @@ public class DespegarHomePage {
 	WebElement selectFechaVuelta;
 	WebElement btnAplicarPeriodo;
 	WebElement habitaciones;
-
+	
+	
+	@FindBy(xpath = "//a[@class='sbox5-3-btn -md -primary']//em[@class='btn-text'][normalize-space()='Aplicar']")
+	private WebElement aplicarHab;
+	@FindBy(xpath = "//div[@class='sbox5-3-select -lg']//select[@class='select-tag']")
+	private WebElement claseSelector;
+	@FindBy(xpath = "//div[@class='sbox5-segment--2_IQ3']//div[@class='sbox5-distribution-passengers--dbiHH']//input[@type='text']")
+	private WebElement desplegableHab;
+	@FindBy(xpath = "//div[@class='stepper__distribution_container']/div[1]//button[@class='steppers-icon-right stepper__icon']")
+	private WebElement masAdulto;
+	@FindBy(xpath = "//div[@class='stepper__distribution_container']/div[2]//button[@class='steppers-icon-right stepper__icon']")
+	private WebElement masNinos;
 	@FindBy(xpath = "//input[@placeholder='Ingresa hacia dónde viajas']")
 	private WebElement txtDestino;
 	@FindBy(xpath = "//input[@placeholder='Ingresa desde dónde viajas']")
@@ -177,6 +189,58 @@ public class DespegarHomePage {
 		btnAplicarPeriodo.click();
 		Utiles.reportes("Aceptamos");
 	}
+	
+	public void seleccionarCantPersonas(int cantAdultos, int cantNinos,String clase,WebDriverWait wait) {
+		
+		int xpathNinos= 2;
+		
+		desplegableHab.click();
+		if (cantAdultos>1) {
+			
+			for (int i=1; i<cantAdultos;i++ ) {
+				masAdulto.click();
+			}
+		}
+		Utiles.reportes("Agregamos "+cantAdultos+" Adultos");
+		if (cantNinos>0) {
+			for (int i=0; i<cantNinos;i++ ) {
+				masNinos.click();
+				Utiles.reportes("Agregamos "+cantNinos+" Niños");
+				xpathNinos++;
+				String xpath = "//div[@class='stepper__distribution_container']//div["+xpathNinos+"]//select[@class='select']";
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+				WebElement selectEdadNino = driver.findElement(By.xpath(xpath));
+				Select selectbuscar = new Select(selectEdadNino);
+			    for (WebElement e : selectbuscar.getOptions()) {
+			        System.out.println(e.getText());
+			        if (e.getText().contains("7 años")) {//por defecto asignamos la edad a 7
+			        	Utiles.reportes("La edad del Nino es: "+ e.getText());
+			            e.click();
+			            break;
+			        }
+			    } 
+			}
+		}
+		seleccionarClase(clase);
+		//aplicarHab.click();
+		
+	}
+	
+	private void seleccionarClase(String clase) {
+		Select selectbuscar = new Select(claseSelector);
+		for (WebElement e : selectbuscar.getOptions()) {
+			System.out.println(e.getText());//muestra todos las clases disponible
+		
+			if (e.getText().contains(clase)) {
+				Utiles.reportes("Seleccionamos la clase: " + e.getText());//muestra la clase seleccionado
+				e.click();
+				break;
+			}
+			
+		}
+		
+	}
+	
 	public void realizarBusqueda() {
 		btnBuscar.click();
 		Utiles.reportes("Clickeamos el boton Buscar");

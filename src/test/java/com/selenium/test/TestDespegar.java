@@ -82,7 +82,7 @@ public class TestDespegar {
 		
 		// Agregar habitacion y Personas
 		//TODO terminar las esperas inteligente para el correcto funcionamiento de la funcion
-		//despegarHomePage.seleccionarCantPersonas(cantAdultos,cantNinos,clase,wait);
+		despegarHomePage.seleccionarCantPersonas(cantAdultos,cantNinos,clase,wait);
 
 		// Buscamos los Paquetes
 		despegarHomePage.realizarBusqueda();

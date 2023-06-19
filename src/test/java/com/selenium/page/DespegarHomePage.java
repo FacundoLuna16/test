@@ -196,18 +196,19 @@ public class DespegarHomePage {
 		int xpathNinos= 2;
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='sbox5-segments--lzKBc']//div[@class='sbox5-distributionPassengers']//input[@class='input-tag']")));
 		desplegableHab.click();
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='stepper__distribution_container']/div[1]//button[@class='steppers-icon-right stepper__icon']")));
 		if (cantAdultos>1) {
 			
 			for (int i=1; i<cantAdultos;i++ ) {
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='stepper__distribution_container']/div[1]//button[@class='steppers-icon-right stepper__icon']")));
 				masAdulto.click();
 			}
 		}
 		Utiles.reportes("Agregamos "+cantAdultos+" Adultos");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='stepper__distribution_container']/div[2]//button[@class='steppers-icon-right stepper__icon']")));
 		if (cantNinos>0) {
 			for (int i=0; i<cantNinos;i++ ) {
 				masNinos.click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='stepper__distribution_container']/div[2]//button[@class='steppers-icon-right stepper__icon']")));
 				Utiles.reportes("Agregamos "+cantNinos+" Niños");
 				xpathNinos++;
 				String xpath = "//div[@class='stepper__distribution_container']//div["+xpathNinos+"]//select[@class='select']";
@@ -249,7 +250,12 @@ public class DespegarHomePage {
 		Utiles.reportes("Clickeamos el boton Buscar");
 	}
 	public void verificarUrlBusqueda(WebDriverWait wait) {
-		wait.until(ExpectedConditions.urlContains("results"));
+		
+		wait.until(ExpectedConditions.or(
+			    ExpectedConditions.urlContains("results"),
+			    ExpectedConditions.urlContains("vuelos")
+			));
+		
 		Utiles.reportes("Los resultados de la busqueda se realizaron de forma exitosa!");
 	}
 

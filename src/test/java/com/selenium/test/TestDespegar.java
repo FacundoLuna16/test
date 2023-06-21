@@ -58,7 +58,7 @@ public class TestDespegar {
 				{ "Buenos Aires, Argentina", "Villa La Angostura, Neuquén, Argentina", 2, 4,2,1,"Primera Clase"} };
 	}
 
-	@Test(dataProvider = "datos", description = "Buscar paquetes en Despegar.com")
+	@Test(dataProvider = "datos", description = "Buscar vuelos en Despegar.com")
 	public void validarDespegar(String Origen, String destino, int salida, int duracion, int cantAdultos, int cantNinos,String clase) throws Exception {
 
 		DespegarHomePage despegarHomePage = PageFactory.initElements(driver, DespegarHomePage.class);

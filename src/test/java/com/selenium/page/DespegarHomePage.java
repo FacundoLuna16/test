@@ -217,7 +217,7 @@ public class DespegarHomePage {
 				WebElement selectEdadNino = driver.findElement(By.xpath(xpath));
 				Select selectbuscar = new Select(selectEdadNino);
 			    for (WebElement e : selectbuscar.getOptions()) {
-			        System.out.println(e.getText());
+			        //System.out.println(e.getText());
 			        if (e.getText().contains("7 años")) {//por defecto asignamos la edad a 7
 			        	Utiles.reportes("La edad del Nino es: "+ e.getText());
 			            e.click();

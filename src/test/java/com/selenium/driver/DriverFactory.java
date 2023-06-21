@@ -2,6 +2,7 @@ package com.selenium.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestContext;
 
@@ -10,7 +11,7 @@ import com.selenium.MetodosUtiles.*;
 public class DriverFactory {
 
 	private enum browsers {
-		EXPLORER, FIREFOX, CHROME
+		EDGE, FIREFOX, CHROME
 	};
 
 	/*** Metodo que abre un navegador y navega a la URL que le indiquemos ***/
@@ -28,9 +29,16 @@ public class DriverFactory {
 		}
 		case FIREFOX:// Using WebDriver
 		{//TODO ejecutar con firefox
-			System.setProperty("webdriver.gecko.driver", "driverBrowsers\\firefox\\geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", "Recursos/geckodriver.exe");
 			Utiles.reportes("Abro browser");
 			driver = new FirefoxDriver();
+			break;
+		}
+		case EDGE:// Using WebDriver
+		{
+			System.setProperty("webdriver.edge.driver", "Recursos/msedgedriver.exe");
+			Utiles.reportes("Abro browser");
+			driver = new EdgeDriver();
 			break;
 		}
 		default:

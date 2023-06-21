@@ -1,5 +1,6 @@
 package com.selenium.page;
 
+import java.time.Duration;
 import java.time.LocalDate;
 
 import org.openqa.selenium.By;
@@ -28,6 +29,7 @@ public class DespegarHomePage {
 	WebElement selectFechaVuelta;
 	WebElement btnAplicarPeriodo;
 	WebElement habitaciones;
+	WebDriverWait wait;
 	
 	
 	@FindBy(xpath = "//a[@class='sbox5-3-btn -md -primary']//em[@class='btn-text'][normalize-space()='Aplicar']")
@@ -61,6 +63,7 @@ public class DespegarHomePage {
 		diaActual = fechaActual.getDayOfMonth();
 		mesActual = fechaActual.getMonthValue();
 		anioActual = fechaActual.getYear();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		
 	}
 
@@ -104,7 +107,6 @@ public class DespegarHomePage {
 		Utiles.reportes("Ingresamos el destino:" + destino);
 	}
 
-	
 	private String calcularFechaRegreso(int dia, int mes, int anio, int duracion) {
 	    int diasEnMes = obtenerDiasEnMes(mes, anio);
 	    int diaRegreso = dia + duracion;
@@ -123,6 +125,7 @@ public class DespegarHomePage {
 
 	    return String.format("%04d-%02d-%02d", anioRegreso, mesRegreso, diaRegreso);
 	}
+	
 	private int obtenerDiasEnMes(int mes, int anio) {
 	    int[] diasEnMeses = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
@@ -137,8 +140,6 @@ public class DespegarHomePage {
 	    return (anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0);
 	}
 	
-
-
 	public void seleccionarFechaIda(int salida,int duracion) throws Exception {
 		
 		String fechaida = String.format("%04d-%02d", anioActual, mesActual);
@@ -191,7 +192,7 @@ public class DespegarHomePage {
 		Utiles.reportes("Aceptamos");
 	}
 	
-	public void seleccionarCantPersonas(int cantAdultos, int cantNinos,String clase,WebDriverWait wait) {
+	public void seleccionarCantPersonas(int cantAdultos, int cantNinos,String clase) {
 		
 		int xpathNinos= 2;
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='sbox5-segments--lzKBc']//div[@class='sbox5-distributionPassengers']//input[@class='input-tag']")));
@@ -249,7 +250,8 @@ public class DespegarHomePage {
 		btnBuscar.click();
 		Utiles.reportes("Clickeamos el boton Buscar");
 	}
-	public void verificarUrlBusqueda(WebDriverWait wait) {
+	
+	public void verificarUrlBusqueda() {
 		
 		wait.until(ExpectedConditions.or(
 			    ExpectedConditions.urlContains("results"),

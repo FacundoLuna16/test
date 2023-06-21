@@ -11,8 +11,6 @@ import com.selenium.MetodosUtiles.*;
 import com.selenium.driver.DriverFactory;
 import com.selenium.page.DespegarHomePage;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
 import java.time.LocalDate;
 
 public class TestDespegar {
@@ -36,12 +34,12 @@ public class TestDespegar {
 	WebElement btnAplicarPeriodo;
 	WebElement habitaciones;
 	WebElement btnBuscar;
-	WebDriverWait wait;
+	
 
 	@BeforeMethod()
 	public void abrirBrowser(ITestContext context) throws Exception {
 		driver = DriverFactory.LevantarBrowser(driver, context);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		
 	}
 
 	@AfterMethod()
@@ -64,8 +62,9 @@ public class TestDespegar {
 	public void validarDespegar(String Origen, String destino, int salida, int duracion, int cantAdultos, int cantNinos,String clase) throws Exception {
 
 		DespegarHomePage despegarHomePage = PageFactory.initElements(driver, DespegarHomePage.class);
-		//TODO ver inconveniente con el comentario
+		
 		despegarHomePage.aceptarCookies();
+		
 		despegarHomePage.cerrarLogin();
 
 		// Ingresar Origen
@@ -82,13 +81,13 @@ public class TestDespegar {
 		
 		// Agregar habitacion y Personas
 		//TODO terminar las esperas inteligente para el correcto funcionamiento de la funcion
-		despegarHomePage.seleccionarCantPersonas(cantAdultos,cantNinos,clase,wait);
+		despegarHomePage.seleccionarCantPersonas(cantAdultos,cantNinos,clase);
 
 		// Buscamos los Paquetes
 		despegarHomePage.realizarBusqueda();
 
 		// Verificamos si la url es de la busqueda
-		despegarHomePage.verificarUrlBusqueda(wait);
+		despegarHomePage.verificarUrlBusqueda();
 
 	}
 }

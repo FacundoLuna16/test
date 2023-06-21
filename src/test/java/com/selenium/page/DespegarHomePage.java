@@ -69,19 +69,24 @@ public class DespegarHomePage {
 
 	public void cerrarLogin() {
 		try {
-		    // Código que puede generar un error
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='login-incentive--button login-incentive--button-close shifu-3-btn-ghost']")));
 			btnEscLogin.click();
-			
 			Utiles.reportes("Cerramos el login a la pagina");
 		} catch (Exception excepcion) {
-		    // Reportamos la Exceptcion
+		    
 		    Utiles.reportes("No se pudo ejecutar: " + excepcion.getMessage());
 		}
 	}
 
 	public void aceptarCookies() {
+		try {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='lgpd-banner--button shifu-3-btn -white -md']")));
 		btnCookies.click();
 		Utiles.reportes("Aceptamos  las Cookies.");
+		} catch (Exception excepcion) {
+		    
+		    Utiles.reportes("No se pudo ejecutar: " + excepcion.getMessage());
+		}
 	}
 
 	public void ingresarSalida(String salida) throws Exception {

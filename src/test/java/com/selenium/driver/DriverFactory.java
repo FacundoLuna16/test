@@ -5,8 +5,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestContext;
-
+import org.openqa.selenium.firefox.FirefoxOptions;
 import com.selenium.MetodosUtiles.*;
+import org.openqa.selenium.firefox.FirefoxProfile;
 
 public class DriverFactory {
 
@@ -29,9 +30,12 @@ public class DriverFactory {
 		}
 		case FIREFOX:// Using WebDriver
 		{//TODO ejecutar con firefox
-			System.setProperty("webdriver.gecko.driver", "Recursos/geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", "Recursos/geckodriver32-2.exe");
 			Utiles.reportes("Abro browser");
-			driver = new FirefoxDriver();
+			FirefoxOptions options = new FirefoxOptions();
+			options.setProfile(new FirefoxProfile());
+			options.addPreference("network.proxy.type", 0); // Si no necesitas un proxy
+			driver = new FirefoxDriver(options);
 			break;
 		}
 		case EDGE:// Using WebDriver

@@ -63,7 +63,7 @@ public class TestDespegar {
 
 		DespegarHomePage despegarHomePage = PageFactory.initElements(driver, DespegarHomePage.class);
 		
-		despegarHomePage.aceptarCookies();
+		//despegarHomePage.aceptarCookies();
 		
 		despegarHomePage.cerrarLogin();
 
